@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Form multi lang</title>
+    <script src="de.js"></script>
+    <script src="pl.js"></script>
+  </head>
+  <body>
+    <script>
+      var langObj = { de: lang_de, pl: lang_pl };
+      var selLang = "";
+      selLang = decodeURIComponent(
+        window.location.search.replace(
+          new RegExp(
+            "^(?:.*[&\\?]" +
+              encodeURIComponent("lang").replace(/[\.\+\*]/g, "\\$&") +
+              "(?:\\=([^&]*))?)?.*$",
+            "i"
+          ),
+          "$1"
+        )
+      );
+
+      var cLang = {};
+      if (selLang != "" && langObj[selLang]) cLang = langObj[selLang];
+    </script>
+
+    <div id="info1">EN version hardcoded</div>
+    <div id="info2">EN version hardcoded</div>
+
+    <script>
+      if (cLang.info1) {
+        document.getElementById("info1").innerHTML = cLang.info1;
+        document.getElementById("info2").innerHTML = cLang.info2;
+      }
+    </script>
+  </body>
+</html>
